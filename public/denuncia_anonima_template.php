@@ -105,7 +105,7 @@
                             <tbody>
                                 <tr>
                                     <th>Tipo de Manifestação:</th>
-                                    <td><?= $dados['nome_tipo_manifestacao'] ?></td>
+                                    <td>Denúncia</td>
                                 </tr>
                                 <tr>
                                     <th>Motivo da Manifestação:</th>
