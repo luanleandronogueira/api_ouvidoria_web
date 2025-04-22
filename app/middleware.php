@@ -5,14 +5,15 @@ declare(strict_types=1);
 use App\Application\Middleware\SessionMiddleware;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Server\RequestHandlerInterface;
 use Slim\App;
 
 return function (App $app) {
     $app->add(SessionMiddleware::class);
 
     // Middleware para habilitar CORS
-    $app->add(function (Request $request, Response $response, $next) {
-        $response = $next($request, $response);
+    $app->add(function (Request $request, RequestHandlerInterface $handler): Response {
+        $response = $handler->handle($request);
 
         return $response
             ->withHeader('Access-Control-Allow-Origin', '*') // Permitir qualquer origem
