@@ -130,6 +130,58 @@ return function (App $app) {
             }
         });
 
+        $group->post('/consulta_manifestacao', function ($request, $response) use ($conn) {
+            $body = $request->getParsedBody();
+            $args = $body;
+
+            if (isset($args['protocolo'])) {
+                $protocolo = $args['protocolo']; // Obter o protocolo a partir do corpo da requisição
+
+                // Executar a consulta
+                // $query = "SELECT m.*, tm.nome_tipo_manifestacao FROM tb_manifestacoes m JOIN tb_tipo_manifestacoes tm ON m.id_tipo_manifestacao = tm.id_tipo_manifestacao WHERE m.protocolo_manifestacao = :protocolo";
+                $query = "SELECT * FROM tb_manifestacoes WHERE protocolo_manifestacao = :protocolo";
+                $stmt = $conn->prepare($query);
+                $stmt->bindValue(':protocolo', $protocolo);
+                $stmt->execute();
+                $manifestacao = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if ($manifestacao) {
+                    // Codificar os dados em JSON
+                    $dados = json_encode($manifestacao);
+
+                    // // Construir a URL base manualmente
+                    $baseUrl = $request->getUri()->getScheme() . '://' . $request->getUri()->getHost();
+                    if ($request->getUri()->getPort()) {
+                    $baseUrl .= ':' . $request->getUri()->getPort();
+                    }
+
+                    // Construir a URL de redirecionamento
+                    $url = $baseUrl . '/api_ouvidoria_web/public/denuncia_template.php?dados=' . urlencode($dados);
+
+                    // Redirecionar para a página PHP
+                    return $response
+                    ->withHeader('Location', $url)
+                    ->withStatus(302) // Redirecionamento temporário
+                    ->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0') // Desabilitar cache
+                    ->withHeader('Pragma', 'no-cache'); // Compatibilidade com HTTP/1.0
+
+                } else {
+
+                    $baseUrl = $request->getUri()->getScheme() . '://' . $request->getUri()->getHost();
+                    // Construir a URL de redirecionamento
+                    $url = $baseUrl . '/api_ouvidoria_web/public/denuncia_anonima_template.php?dados=';
+
+                    // Redirecionar para a página PHP
+                    return $response
+                    ->withHeader('Location', $url)
+                    ->withStatus(302); // Redirecionamento temporário
+                }
+            } else {
+                $response->getBody()->write('Protocolo não informado.');
+                return $response->withStatus(400)->withHeader('Content-Type', 'text/plain');
+            }
+        });
+
         $group->get('/entidades', function ($request, $response) use ($conn) {
             $query = "SELECT * FROM tb_entidades";
             $stmt = $conn->prepare($query);
