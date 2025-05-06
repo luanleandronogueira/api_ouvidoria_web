@@ -182,6 +182,24 @@ return function (App $app) {
             }
         });
 
+        $group->get('/consulta_manifestacoes_protocolo/{protocolo}', function ($request, $response, array $args) use ($conn) {
+            $protocolo = $args['protocolo']; // Obter o protocolo a partir dos parâmetros da URL
+            // Executar a consulta
+            $query = "SELECT * FROM tb_manifestacoes WHERE protocolo_manifestacao = :protocolo";
+            $stmt = $conn->prepare($query);
+            $stmt->bindValue(':protocolo', $protocolo, PDO::PARAM_STR);
+            $stmt->execute();
+            $manifestacao = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (!empty($manifestacao)) {
+                $response->getBody()->write(json_encode($manifestacao));
+                return $response->withHeader('Content-Type', 'application/json');
+            } else {
+                $response->getBody()->write('Manifestação Não Cadastrada.');
+                return $response->withStatus(404)->withHeader('Content-Type', 'text/plain');
+            }
+        });
+
+
         $group->get('/entidades', function ($request, $response) use ($conn) {
             $query = "SELECT * FROM tb_entidades";
             $stmt = $conn->prepare($query);

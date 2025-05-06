@@ -20,12 +20,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Aplicativo web de Ouvidoria">
     <meta name="author" content="L3 Tecnologia/IT Soluções">
-    <title>Ouvidoria Web - Anônimo</title>
+    <title>Ouvidoria Digital - Anônimo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=communication" />
-    <link rel="stylesheet" href="https://l3tecnologia.app.br/ouvidoriaweb/assets/css/style_anonimo.css">
+    <link rel="stylesheet" href="https://l3tecnologia.app.br/ouvidoriadigital/assets/css/style_anonimo.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -60,7 +60,7 @@
                 <div class="container ">
                     <div class="row ">
                         <div class="col-3 col-xl-3 col-lg-3">
-                            <a href="https://l3tecnologia.app.br/ouvidoriaweb/login.php"><img class="rounded-5" src="https://l3tecnologia.app.br/ouvidoriaweb/assets/images/ouvidoria_web_branco_logo.png" width="90px" height="90" alt="Ouvidoria Web"></a>
+                            <a href="https://l3tecnologia.app.br/ouvidoriadigital/login.php"><img src="https://l3tecnologia.app.br/ouvidoriadigital/assets/images/logo_branca.png" width="270px" height="80" alt="Ouvidoria Digital"></a>
                         </div>
                         <div class="col-6 col-xl-6 col-lg-6">
                             <div class="cont_sessao2">
@@ -76,8 +76,8 @@
 
         <nav class="nav_controller_mobile navbar navbar-expand-lg d-lg-none d-xl-none d-xxl-none">
             <div class="container-fluid">
-                <a class="navbar-brand" href="dashboard.php">
-                    <img src="assets/images/ouvidoria_web_branco_logo.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
+                <a class="navbar-brand text-center" href="dashboard.php">
+                    <img src="https://l3tecnologia.app.br/ouvidoriadigital/assets/images/logo_branca.png" alt="Logo" width="270" height="80" class="d-inline-block align-text-top">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
@@ -163,7 +163,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-xl-3 col-xxl-3 col-sm-12 col-md-12 logo_footer">
-                    <img src="https://l3tecnologia.app.br/ouvidoriaweb/assets/images/ouvidoria_web_branco.png" width="280px" alt="Ouvidoria Web">
+                    <img src="https://l3tecnologia.app.br/ouvidoriadigital/assets/images/logo_branca.png" width="280px" alt="Ouvidoria Digital">
                 </div>
                 <div class="col-3 col-lg-3 col-xl-3 col-xxl-3 col-sm-12 col-md-12 logo_footer">
                     <h5>Solicitações</h5>
