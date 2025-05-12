@@ -86,7 +86,7 @@ return function (App $app) {
 
                 // Executar a consulta
                 // $query = "SELECT m.*, tm.nome_tipo_manifestacao FROM tb_manifestacoes m JOIN tb_tipo_manifestacoes tm ON m.id_tipo_manifestacao = tm.id_tipo_manifestacao WHERE m.protocolo_manifestacao = :protocolo";
-                $query = "SELECT * FROM tb_manifestacoes WHERE protocolo_manifestacao = :protocolo";
+                $query = "SELECT m.*, u.nome_usuario, u.sobrenome_usuario, u.cpf_usuario, u.email_usuario FROM tb_manifestacoes m JOIN tb_usuario u ON m.id_usuario_manifestacao = u.id_usuario WHERE m.protocolo_manifestacao = :protocolo";
                 $stmt = $conn->prepare($query);
                 $stmt->bindValue(':protocolo', $protocolo);
                 $stmt->execute();
@@ -103,7 +103,7 @@ return function (App $app) {
                     }
 
                     // Construir a URL de redirecionamento
-                    $url = $baseUrl . '/api_ouvidoria_web/public/denuncia_anonima_template.php?dados=' . urlencode($dados);
+                    $url = $baseUrl . '/api_ouvidoria_web/public/denuncia_template.php?dados=' . urlencode($dados);
 
                     // Redirecionar para a página PHP
                     return $response
@@ -185,7 +185,7 @@ return function (App $app) {
         $group->get('/consulta_manifestacoes_protocolo/{protocolo}', function ($request, $response, array $args) use ($conn) {
             $protocolo = $args['protocolo']; // Obter o protocolo a partir dos parâmetros da URL
             // Executar a consulta
-            $query = "SELECT * FROM tb_manifestacoes WHERE protocolo_manifestacao = :protocolo";
+            $query = "SELECT m.*, u.nome_usuario, u.sobrenome_usuario, u.cpf_usuario, u.email_usuario FROM tb_manifestacoes m JOIN tb_usuario u ON m.id_usuario_manifestacao = u.id_usuario WHERE m.protocolo_manifestacao = :protocolo";
             $stmt = $conn->prepare($query);
             $stmt->bindValue(':protocolo', $protocolo, PDO::PARAM_STR);
             $stmt->execute();

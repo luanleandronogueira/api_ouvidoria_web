@@ -5,6 +5,9 @@
 
             // Exibir os dados ou usá-los como necessário
             // echo '<h1>Dados da Manifestação</h1>';
+
+            $cpf = isset($dados['cpf_usuario']) ? $dados['cpf_usuario'] : '';
+            $cpf = preg_replace('/\d(?=\d{3})/', '*', $cpf);
             // echo '<pre>';
             // print_r($dados);
             // echo '</pre>';
@@ -60,7 +63,7 @@
                 <div class="container ">
                     <div class="row ">
                         <div class="col-3 col-xl-3 col-lg-3">
-                            <a href="https://l3tecnologia.app.br/ouvidoriaweb/login.php"><img class="rounded-5" src="https://l3tecnologia.app.br/ouvidoriaweb/assets/images/ouvidoria_web_branco_logo.png" width="90px" height="90" alt="Ouvidoria Web"></a>
+                            <a href="https://l3tecnologia.app.br/ouvidoriadigital/login.php"><img src="https://l3tecnologia.app.br/ouvidoriadigital/assets/images/logo.png" width="290" height="90" alt="Ouvidoria Digital"></a>
                         </div>
                         <div class="col-6 col-xl-6 col-lg-6">
                             <div class="cont_sessao2">
@@ -77,7 +80,7 @@
         <nav class="nav_controller_mobile navbar navbar-expand-lg d-lg-none d-xl-none d-xxl-none">
             <div class="container-fluid">
                 <a class="navbar-brand" href="dashboard.php">
-                    <img src="assets/images/ouvidoria_web_branco_logo.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
+                    <img src="assets/images/logo.png" alt="Logo" width="270" height="90" class="d-inline-block align-text-top">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
@@ -107,6 +110,19 @@
                                     <th>Tipo de Manifestação:</th>
                                     <td>Denúncia</td>
                                 </tr> -->
+                                <tr>
+                                    <th>Manifestante:</th>
+                                    <td><?= $dados['nome_usuario'] . ' ' . $dados['sobrenome_usuario'] ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Email:</th>
+                                    <td><?= $dados['email_usuario'] ?></td>
+                                </tr>
+                                <tr>
+                                    <th>CPF:</th>
+                                    <td><?= $cpf ?></td>
+                                </tr>
+                                <hr>
                                 <tr>
                                     <th>Motivo da Manifestação:</th>
                                     <td><?= $dados['motivo_manifestacao'] ?></td>
@@ -163,7 +179,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-xl-3 col-xxl-3 col-sm-12 col-md-12 logo_footer">
-                    <img src="https://l3tecnologia.app.br/ouvidoriaweb/assets/images/ouvidoria_web_branco.png" width="280px" alt="Ouvidoria Web">
+                    <img src="https://l3tecnologia.app.br/ouvidoriadigital/assets/images/logo.png" width="280px" alt="Ouvidoria Web">
                 </div>
                 <div class="col-3 col-lg-3 col-xl-3 col-xxl-3 col-sm-12 col-md-12 logo_footer">
                     <h5>Solicitações</h5>
