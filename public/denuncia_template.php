@@ -2,6 +2,7 @@
         if (isset($_GET['dados'])) {
             // Decodificar os dados do JSON
             $dados = json_decode($_GET['dados'], true);
+            $respostas = json_decode($_GET['respostas'], true);
 
             // Exibir os dados ou usá-los como necessário
             // echo '<h1>Dados da Manifestação</h1>';
@@ -10,6 +11,10 @@
             $cpf = preg_replace('/\d(?=\d{3})/', '*', $cpf);
             // echo '<pre>';
             // print_r($dados);
+            // echo '</pre>';
+            // echo '<hr><br>';
+            // echo '<pre>';
+            // print_r($respostas);
             // echo '</pre>';
         } else {
             echo 'Nenhum dado foi passado.';
@@ -63,7 +68,7 @@
                 <div class="container ">
                     <div class="row ">
                         <div class="col-3 col-xl-3 col-lg-3">
-                            <a href="https://l3tecnologia.app.br/ouvidoriadigital/login.php"><img src="https://l3tecnologia.app.br/ouvidoriadigital/assets/images/logo.png" width="290" height="90" alt="Ouvidoria Digital"></a>
+                            <a href="https://l3tecnologia.app.br/ouvidoriadigital/login.php"><img src="https://l3tecnologia.app.br/ouvidoriadigital/assets/images/logo.png" width="290" height="80" alt="Ouvidoria Digital"></a>
                         </div>
                         <div class="col-6 col-xl-6 col-lg-6">
                             <div class="cont_sessao2">
@@ -156,11 +161,45 @@
                             </tbody>
                         </table>
                     </div>
+                    
+                    <hr>
+
                     <div class="col-12 col-lg-12 col-xl-12 col-xxl-12 mt-5">
-                    <div class="cont_sessao">
-                        <h3 class="text-center">Resposta da Gestão</h3>
+                        <div class="cont_sessao">
+                            <h3 class="text-center">Resposta da Gestão</h3>
+                        </div>
+                        
+                        <?php if(empty($dados['respostas'])){?>
+
+                            <span class="text-center">
+                                <h5>Não Há nenhuma resposta até o momento</h5>
+                                
+                            </span>
+
+                        <?php } else {?>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th scope="col">Data</th>
+                                        <th scope="col">Resposta</th>
+                                        <th scope="col">Gestão</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($dados['respostas'] as $resposta){?>
+                                    <tr>
+                                        <th><?=$resposta['id_resposta_manifestacoes']?></th>
+                                        <td><?=$resposta['data_horario_resposta']?></td>
+                                        <td><?=$resposta['resposta_manifestacao']?></td>
+                                        <td><?=$resposta['nome_responsavel_resposta']?></td> 
+                                    </tr>
+                                    <?php }?>
+                                </tbody>
+                            </table>
+                            
+                        <?php }?>
                     </div>
-                </div>
                 <?php } else { ?>
                     <div class="col-12 col-lg-12 col-xl-12 col-xxl-12 mt-5">
                         <div class="cont_sessao">
